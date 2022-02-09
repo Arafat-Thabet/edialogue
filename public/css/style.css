@@ -1,0 +1,11 @@
+.content {
+    min-height: 80vh;
+}
+
+.text-end {
+    text-align: end !important;
+}
+
+.text-start {
+    text-align: start !important;
+}

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\TeamMember;
+use App\Http\Controllers\Dashboard;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,19 +16,13 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {
-    if (Auth::check()){
-        return view('dashboard');
-    }
-    return view('auth/login');
-});
+Route::middleware(['auth:sanctum', 'verified'])->get('/', [Dashboard::class, 'index']);
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [Dashboard::class, 'index'])->name('dashboard');
 
 Route::prefix('admin')->group(function () {
     Route::get('add-member', [TeamMember::class, 'add']);
     Route::get('hr-employees', [TeamMember::class, 'getHREmployees']);
+    Route::post('save-member', [TeamMember::class, 'store'])->name('save_member');;
     
 });

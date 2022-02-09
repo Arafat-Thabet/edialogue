@@ -49,7 +49,9 @@
         </main>
     </div>
 
+    <script src="{{ asset('js/jquery3.6.0.js') }}"></script>
     <script src="{{ asset('js/select2.min.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 
     <script src="{{ asset('js/bootstrap5.js') }}"></script>
 </body>

@@ -1,0 +1,7 @@
+.breadcrumb-item+.breadcrumb-item::before {
+    float: right;
+}
+
+body {
+    font-family: 'Almarai', sans-serif;
+}

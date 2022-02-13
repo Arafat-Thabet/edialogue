@@ -12,10 +12,8 @@
            
         </div>
         <div class="bg-white rounded shadow border p-6 mx-4 w-1/4">
-            <h5 class="text-3xl font-bold mb-4 mt-0">{{ __('Smart Tickets ')}}</h5>
-            https://tickets.smart-hr.top/auto_login?
-            <a href="{{$smart_hr_url}}" class="text-3xl font-bold mb-4 mt-0 flex-auto mx-4 w-1/4">
-           {{ __('Smart HR')}}
+            <a href="{{$ticket_url}}" class="text-3xl font-bold mb-4 mt-0 flex-auto mx-4 w-1/4">
+           {{ __('Smart Tickets')}}
            </a>
         </div>
         <div class="bg-white rounded shadow border p-6 mx-4 w-1/4">

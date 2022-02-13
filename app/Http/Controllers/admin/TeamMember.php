@@ -238,9 +238,7 @@ class TeamMember extends Controller
             return response()->json(['success' =>true,'message'=> $AddEmployee->message]);
         else
         return response()->json(['success' =>false,'errors' =>[],'message'=> $AddEmployee->message]);
-
         }
-
         return response()->json(['success'=>false,'message'=>'','errors' => $validator->errors()]);
     }
 }

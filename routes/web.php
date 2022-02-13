@@ -38,6 +38,7 @@ Route::prefix('admin')->group(function () {
     Route::get('work-schedules-list', [TeamMember::class, 'getWorkSchedules'])->name('work-schedules-list');
     Route::get('currencies-list', [TeamMember::class, 'getcurrenciesList'])->name('currencies-list');
     Route::get('hr-roles-list', [TeamMember::class, 'getHRUserRoles'])->name('hr-roles-list');
+    Route::get('save-ticket-user', [Ticket::class, 'storeUser'])->name('save_ticket_user');
     
    
 });

@@ -15,7 +15,9 @@
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap5.css') }}">
+     <link rel="stylesheet" href="{{ asset('css/calendar/humanity.calendars.picker.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    
     @if(app()->getLocale()=='ar')
     <link rel="stylesheet" href="{{ asset('css/rtl.css') }}">
 
@@ -25,6 +27,8 @@
     <!--===============================================================================================-->
     
     @endif
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.11.4/af-2.3.7/datatables.min.css"/>
+
     <!-- Scripts -->
 </head>
 
@@ -45,15 +49,24 @@
   
         <!-- Page Content -->
         <main>
+        <script type="text/javascript" src="{{ asset('js/jquery3.6.0.js') }}"></script>
+
             {{ $slot }}
         </main>
     </div>
-
-    <script src="{{ asset('js/jquery3.6.0.js') }}"></script>
-    <script src="{{ asset('js/select2.min.js') }}"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
-
+    @include('layouts/modal')
+    
+    <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap5.js') }}"></script>
+    <script src="{{ asset('js/select2.min.js') }}"></script>
+    <script src="{{ asset('js/calendar/jquery.plugin.min.js') }}"></script>
+    <script src="{{ asset('js/calendar/jquery.calendars.all.min.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/index.js') }}"></script>
+    <script src="{{ asset('js/sweetalert2.11.js') }}"></script>
+    
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.4/af-2.3.7/datatables.min.js"></script>
+    
 </body>
 
 </html>

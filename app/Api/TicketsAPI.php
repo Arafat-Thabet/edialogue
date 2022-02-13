@@ -40,4 +40,13 @@ class TicketsAPI
         ])->post(hr_api_url('api/user'), $post);
         return $response->object();
     }
+    public function getUser($get = array())
+    {
+        $response = Http::withHeaders([
+            'authorization' => $this->auth_token
+        ])->post(hr_api_url('api/users'), $get);
+
+
+        return $response->object()->result;
+    }
 }

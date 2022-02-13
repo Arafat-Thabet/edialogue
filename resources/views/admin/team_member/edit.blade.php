@@ -44,6 +44,9 @@
           <div class="col-md-9 col-lg-7">
             <select class="form-control ticket-select2" name="ticket_user_id">
               <option value="0"></option>
+              @foreach($ticket_users as $u)
+              <option value="{{$u->id}}" {{$u->id==$user->ticket_user_id ? 'selected' : ''}}>{{$u->name}}</option>
+            @endforeach
             </select>
           </div>
         </div>

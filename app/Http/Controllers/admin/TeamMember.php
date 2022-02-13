@@ -111,6 +111,9 @@ class TeamMember extends Controller
         $get['id'] =  $user->hr_user_id;
         $data['user'] = $user;
         $data['hr_users'] = $this->smarthr->getEmployee($get);
+        $ticket_filter['id']=$user->ticket_user_id;
+        $ticket = new  TicketsAPI();
+        $data['ticket_users'] = $ticket->getUser($get);
         return  view('admin/team_member/edit', $data);
     }
     public function getTicketsUsers()

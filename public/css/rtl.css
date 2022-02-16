@@ -1,7 +1,19 @@
-.breadcrumb-item+.breadcrumb-item::before {
-    float: right;
-}
-
-body {
-    font-family: 'Almarai', sans-serif;
-}
+    .breadcrumb-item+.breadcrumb-item::before {
+        float: right;
+    }
+    
+    body {
+        font-family: 'Almarai', sans-serif;
+    }
+    
+    .dataTables_wrapper .dataTables_length {
+        float: right !important;
+    }
+    
+    .dataTables_wrapper .dataTables_filter {
+        float: left !important;
+    }
+    
+    .dataTables_wrapper .dataTables_info {
+        float: right !important;
+    }

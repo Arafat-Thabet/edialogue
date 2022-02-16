@@ -265,6 +265,9 @@
         success: function(data) {
           if (data.success==true) {
             HRSuccessMsg(data.message,'{{__("Success")}}');
+            var myModalEl = document.getElementById('ajaxModal');
+var modal = bootstrap.Modal.getInstance(myModalEl)
+modal.hide();
           } else {
             printErrorMsg(data.errors);
             HRErrorMsg(data.message,'{{__("Error")}}');

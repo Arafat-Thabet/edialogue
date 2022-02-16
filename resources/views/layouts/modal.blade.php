@@ -112,6 +112,7 @@
   keyboard: false
 });
 ajaxModal.show();
+
         $(this).each(function() {
             $.each(this.attributes, function() {
                 if (this.specified && this.name.match("^data-post-")) {

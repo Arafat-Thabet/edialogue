@@ -10,14 +10,17 @@
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.4/af-2.3.7/datatables.min.css"/>
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap5.css') }}">
+    <link href="{{asset('css/tailwind.css')}}" rel="stylesheet">
+
      <link rel="stylesheet" href="{{ asset('css/calendar/humanity.calendars.picker.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    
+
     @if(app()->getLocale()=='ar')
     <link rel="stylesheet" href="{{ asset('css/rtl.css') }}">
 
@@ -28,7 +31,7 @@
     
     @endif
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.11.4/af-2.3.7/datatables.min.css"/>
-
+    <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}" />
     <!-- Scripts -->
 </head>
 
@@ -38,22 +41,20 @@
     <div class="min-h-screen bg-gray-100">
         @livewire('navigation-menu')
 
-        <!-- Page Heading -->
-        @if (isset($header))
-        <header class="bg-white shadow">
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                {{ $header }}
-            </div>
-        </header>
-        @endif
+    
   
         <!-- Page Content -->
         <main>
+
         <script type="text/javascript" src="{{ asset('js/jquery3.6.0.js') }}"></script>
 
             {{ $slot }}
         </main>
+      
     </div>
+    <div class="text-center site-footer py-2">
+        
+            جميع الحقوق محفوظة ركن الحوار@<?=date('Y')?></div>
     @include('layouts/modal')
     
     <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
@@ -64,9 +65,7 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/index.js') }}"></script>
     <script src="{{ asset('js/sweetalert2.11.js') }}"></script>
-    
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.4/af-2.3.7/datatables.min.js"></script>
-    
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.4/af-2.3.7/datatables.min.js"></script> 
 </body>
 
 </html>

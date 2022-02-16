@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Api\ErpAPI;
 use App\Http\Controllers\Controller;
 use App\Api\SmartHRAPI;
+use App\Api\TaskAPI;
 use App\Api\TicketsAPI;
 use App\Http\Middleware\PreventRequestsDuringMaintenance;
 use App\Models\User;
@@ -38,7 +40,7 @@ class TeamMember extends Controller
     }
     public function getData()
     {
-        $users = User::select(['id', 'name', 'email', 'created_at', 'updated_at'])->where("id",">",0);
+        $users = User::select(['id', 'name', 'email', 'hr_user_id', 'task_user_id','erp_user_id','ticket_user_id'])->where("id",">",1);
 
         return Datatables::of($users)
             ->addColumn('action', function ($row) {
@@ -47,12 +49,50 @@ class TeamMember extends Controller
                 $edit_lang = __('Edit');
                 $delete_lang = __('Delete');
                 $btn = '';
-                $btn = $btn . '<a  href="' . $edit_url . '" title="' . $edit_lang . '" class="edit btn btn-primary btn-sm">' . $edit_lang . '</a>';
-                $btn = $btn . ' <a link="' . $delete_url . '" title="' . $delete_lang . '" class="edit btn btn-danger delete-btn btn-sm">' . $delete_lang . '</a>';
+                $btn = $btn . '<a  href="' . $edit_url . '" title="' . $edit_lang . '" class="edit mt-1 btn btn-primary btn-sm">' . $edit_lang . '</a>';
+                $btn = $btn . ' <a link="' . $delete_url . '" title="' . $delete_lang . '" class="edit mt-1 btn btn-danger delete-btn btn-sm">' . $delete_lang . '</a>';
 
                 return $btn;
             })
-            ->rawColumns(['action'])
+            ->addColumn('hr', function ($row) {
+             $linked=__('Linked');
+             $linked=$linked;
+             $unlinked=__('Unlinked');
+             if($row->hr_user_id>0)
+                return $linked;
+                else
+                return $unlinked;
+
+            })
+            ->addColumn('task', function ($row) {
+                $linked=__('Linked');
+                $unlinked=__('Unlinked');
+                if($row->task_user_id>0)
+                   return $linked;
+                   else
+                   return $unlinked;
+   
+               })
+               ->addColumn('erp', function ($row) {
+                $linked=__('Linked');
+                $unlinked=__('Unlinked');
+                if($row->erp_user_id>0)
+                   return $linked;
+                   else
+                   return $unlinked;
+   
+               })
+               ->addColumn('ticket', function ($row) {
+                $linked=__('Linked');
+                $unlinked=__('Unlinked');
+                if($row->ticket_user_id>0)
+                   return $linked;
+                   else
+                   return $unlinked;
+   
+               })
+            ->rawColumns(['action','hr'])
+    
             ->make(true);
     }
     public function getHREmployees()
@@ -108,33 +148,21 @@ class TeamMember extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        $get['id'] =  $user->hr_user_id;
+        $get['id'] = intval($user->hr_user_id);
         $data['user'] = $user;
         $data['hr_users'] = $this->smarthr->getEmployee($get);
-        $ticket_filter['id']=$user->ticket_user_id;
+        $ticket_filter['id']=intval($user->ticket_user_id);
         $ticket = new  TicketsAPI();
-        $data['ticket_users'] = $ticket->getUser($get);
+        $data['ticket_users'] =$ticket->getUser($ticket_filter);
+        $erp_filter['id']=intval($user->erp_user_id);
+        $erp = new  ErpAPI();
+        $data['erp_users'] =  $erp->getUser($erp_filter);
+        $task = new  TaskAPI();
+        $task_filter['id']=intval($user->task_user_id);
+        $data['task_users'] = $task->getUser($task_filter);
         return  view('admin/team_member/edit', $data);
     }
-    public function getTicketsUsers()
-    {
 
-        $ticket = new  TicketsAPI();
-        $filter = $_GET ? $_GET : [];
-        $users = User::where("ticket_user_id", ">", 0)->get();
-
-        if ($users) {
-            $not_ids = [];
-            foreach ($users as $u) {
-                $not_ids[] = $u->ticket_user_id;
-            }
-            if (!empty($not_ids)) {
-                $filter['not_ids'] = implode(',', $not_ids);
-            }
-        }
-
-        return $ticket->getUsers($filter);
-    }
     public function store(Request $request)
     {
         $validator = $request->validate([
@@ -151,6 +179,10 @@ class TeamMember extends Controller
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->hr_user_id = $request->hr_user_id;
+        $user->task_user_id = $request->task_user_id;
+        $user->ticket_user_id = $request->ticket_user_id;
+        $user->erp_user_id = $request->erp_user_id;
+        
         $user->role_id = $request->role_id;
         $user->save();
         $this->createTeam($user);
@@ -171,6 +203,9 @@ class TeamMember extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->hr_user_id = $request->hr_user_id;
+        $user->task_user_id = $request->task_user_id;
+        $user->ticket_user_id = $request->ticket_user_id;
+        $user->erp_user_id = $request->erp_user_id;
         $user->role_id = $request->role_id;
         $user->id = $request->id;
         $user->save();

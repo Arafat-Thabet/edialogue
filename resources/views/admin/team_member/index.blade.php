@@ -1,7 +1,8 @@
 
 <x-app-layout>
 <script srsc="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
-
+<div class="flex  justify-center bg-gray-100">
+<div class="col-lg-11">
   <section class="p-5 content bg-white">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
@@ -15,33 +16,56 @@
     <th>{{__('id')}}</th>
     <th>{{__('Name')}}</th>
     <th>{{__('Email')}}</th>
-    <th>{{__('Created At')}}</th>
-    <th>{{__('Updated At')}}</th>
+    <th>{{ __('Smart HR')}}</th>
+    <th> {{ __('Task Managment')}}</th>
+    <th> {{ __('Smart ERP')}}</th>
+    <th> {{ __('Smart Tickets')}}</th>
     <th>{{__('Action')}}</th>
 </thead>
     </table>
     </div>
   </section>
+  </div>
+  </div>
 </x-app-layout>
 <script>
     $(function() {
         $('#users-table').DataTable({
             processing: true,
             serverSide: true,
+            "oLanguage": {
+            "sProcessing": " جاري التحميل",
+            "sLengthMenu": "عرض  _MENU_ من السجلات",
+            "sZeroRecords": "لم يعثر على أية سجلات",
+            "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+            "sInfoEmpty":" يعرض 0 إلى 0 من أصل 0 سجل",
+            "sInfoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+         
+            "sSearch": "بحث",
+        
+            "oPaginate": {
+                "sFirst": "الأول",
+                "sPrevious":" السابق",
+                "sNext":" التالي",
+                "sLast": "الأخير"
+            }
+        },
             ajax: "{{route('members')}}",
             aoColumns: [
       
         { mData: 'id' },
         { mData: 'name' },
         { mData: 'email' },
-        { mData: 'created_at' },
-        { mData: 'updated_at' },
+        { mData: 'hr' },
+        { mData: 'task' },
+        { mData: 'erp' },
+        { mData: 'ticket' },
         { mData: 'action' },
         
   
  
     ],
-        });
+});
     });
 </script>
 <script>

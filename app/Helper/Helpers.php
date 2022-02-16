@@ -31,13 +31,25 @@ if (!function_exists('encrypt_url')) {
 if (!function_exists('tickets_base_url')) {
 	function tickets_base_url($url = '')
 	{
-		return "https://tickets.smart-hr.top/" . $url;
+		return "http://tickets.smart-hr.top/" . $url;
+	}
+}
+if (!function_exists('task_base_url')) {
+	function task_base_url($url = '')
+	{
+		return "http://localhost/taskroken/" . $url;
+	}
+}
+if (!function_exists('erp_url')) {
+	function erp_url($url = '')
+	{
+		return "http://test.smarterp.top/" . $url;
 	}
 }
 if (!function_exists('is_admin')) {
 	function is_admin()
 	{
-		if (Auth::user()->role_id == 1) {
+		if (auth()->user()->role_id == 1) {
 			return true;
 		} else {
 			return false;
@@ -76,8 +88,8 @@ if (!function_exists('message_box')) {
     
             }
             if (!empty($uri)) {
-				return redirect(route('members_list'));
-                redirect($uri);
+				//return redirect(route($uri));
+				return  redirect($uri);
               
             }
             return false;

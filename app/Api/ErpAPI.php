@@ -4,7 +4,7 @@ namespace App\Api;
 
 use Illuminate\Support\Facades\Http;
 
-class TicketsAPI
+class ErpAPI
 {
     /**
      * Indicates if the IDs are auto-incrementing.
@@ -12,17 +12,15 @@ class TicketsAPI
      * @var bool
      */
 
-    protected $auth_token = '458TGgA73Hl3ljZCVq2gdUZoZAoEI1EXUmc8G+2o53aIY5o3cCG+egvy9UayJCFlTUcV3xXJ0RIxRYCH8O6XCaCgt6/VL8mK4x3E+gGdgGf8yA39HAghHzsiXmqTufhMBWiP9yIaONZCS2TEmVjV9jn0w@@221';
-    protected static $token = '458TGgA73Hl3ljZCVq2gdUZoZAoEI1EXUmc8G+2o53aIY5o3cCG+egvy9UayJCFlTUcV3xXJ0RIxRYCH8O6XCaCgt6/VL8mK4x3E+gGdgGf8yA39HAghHzsiXmqTufhMBWiP9yIaONZCS2TEmVjV9jn0w@@221';
+    protected $auth_token = '412x8AyN68YWGlJL47lxeurvboYtoLoT7pZw05sWKW8vuK7UbogJs1aGuM1aZXPXFTBv1gzR40KwuwN1jQjBslVjpNqx3jDzO88gCX9qUfILFO1CVT9d1+Xlopjo+4IokegRgPTiaKvQIS7t4vXoxGzkA@@755';
+    protected static $token = '412x8AyN68YWGlJL47lxeurvboYtoLoT7pZw05sWKW8vuK7UbogJs1aGuM1aZXPXFTBv1gzR40KwuwN1jQjBslVjpNqx3jDzO88gCX9qUfILFO1CVT9d1+Xlopjo+4IokegRgPTiaKvQIS7t4vXoxGzkA@@755';
 
-    public function getUsers($post = array())
+    public function getUsers($get = array())
     {
         $response = Http::withHeaders([
             'authorization' => $this->auth_token
-        ])->get(tickets_base_url('api/cdialog/users'), $post);
-
-
-        return $response->object()->result;
+        ])->get(erp_url('api/cdialog/users'), $get);
+        return response()->json($response->object()->result);
     }
     public static function loginUrl($user_id)
     {
@@ -30,20 +28,20 @@ class TicketsAPI
         $data['token'] = $token;
         $data['id'] = $user_id;
         $encrypt_url=encrypt_url($data);
-        $url=tickets_base_url('auto_login?uri='.$encrypt_url);
+        $url=erp_url('autologin?uri='.$encrypt_url);
         return $url;
     }
     public function addUser($post=[]){
         $response = Http::withHeaders([
             'authorization' => $this->auth_token
-        ])->post(tickets_base_url('api/cdialog/user'), $post);
+        ])->post(erp_url('api/cdialog/user'), $post);
         return $response->object();
     }
     public function getUser($get = array())
     {
         $response = Http::withHeaders([
             'authorization' => $this->auth_token
-        ])->get(tickets_base_url('api/cdialog/users'), $get);
+        ])->get(erp_url('api/cdialog/users'), $get);
 
 
         return $response->object()->result;
@@ -51,8 +49,9 @@ class TicketsAPI
     public function getGroupsList($get = array())
     {
         $response = Http::withHeaders([
-            'authorization' => $this->auth_token
-        ])->get(tickets_base_url('api/cdialog/groups'), $get);
+            'authorization' => $this->auth_token,
+            'Cookie'=>'_client=test3; sess=u2li7tqolg9dbsvmd32800ucc9u54n5m'
+        ])->get(erp_url('api/cdialog/groups'), $get);
 
         return $response->object()->result;
     }

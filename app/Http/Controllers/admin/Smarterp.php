@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Api\TicketsAPI;
+use App\Api\ErpAPI;
 use App\Models\User;
 use App\Models\Team;
 use Illuminate\Support\Facades\Validator;
@@ -12,16 +12,30 @@ use Illuminate\Support\Facades\Hash;
 use Yajra\Datatables\DataTables;
 
 
-class Ticket extends Controller
+class Smarterp extends Controller
 {
     public function __construct()
     {
-        $this->ticket_api = new  TicketsAPI();
+        $this->erp_api = new  ErpAPI();
     }
     public function add()
     {
         $data=[];
-        return view('admin/ticket/add_ticket_user');
+        return view('admin/smarterp/add_user');
+    }
+    public function getUsers(){
+        $filter = $_GET ? $_GET : [];
+        $users = User::where("erp_user_id", ">", 0)->get();
+        if ($users) {
+            $not_ids = [];
+            foreach ($users as $u) {
+                $not_ids[] = $u->erp_user_id;
+            }
+            if (!empty($not_ids)) {
+                $filter['not_ids'] = implode(',', $not_ids);
+            }
+        }
+        return $this->erp_api->getUsers($filter);
     }
     public function storeUser(Request $request)
     {
@@ -39,7 +53,7 @@ class Ticket extends Controller
         if (!$validator->fails()) {
             $data = $_POST;
             unset($data['_token']);
-            $add=$this->ticket_api->addUser($data);
+            $add=$this->erp_api->addUser($data);
 
             if($add->success==true)
             return response()->json(['success' =>true,'message'=> $add->message]);
@@ -52,28 +66,7 @@ class Ticket extends Controller
     }
     public function getGroupsList(){
         $get = $_GET ? $_GET : [];
-       $result= $this->ticket_api->getGroupsList($get);
-        return response()->json( $result);
-    }
-    public function getTicketsUsers()
-    {
-
-     
-        $filter = $_GET ? $_GET : [];
-        $users = User::where("ticket_user_id", ">", 0)->get();
-        $filter['limit']=10;
-        if ($users) {
-            $not_ids = [];
-            foreach ($users as $u) {
-                $not_ids[] = $u->ticket_user_id;
-            }
-            if (!empty($not_ids)) {
-                $filter['not_ids'] = implode(',', $not_ids);
-            }
-        }
-        return $result=$this->ticket_api->getUsers($filter);
+       $result= $this->erp_api->getGroupsList($get);
         return response()->json($result);
-
-        
     }
 }

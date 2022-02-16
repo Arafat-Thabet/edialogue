@@ -2,6 +2,7 @@
 
 return array (
   'accepted' => 'The :attribute must be accepted.',
+  'password'=>'كلمة المرور غير صحيحة',
   'active_url' => 'The :attribute is not a valid URL.',
   'after' => 'The :attribute must be a date after :date.',
   'after_or_equal' => 'The :attribute must be a date after or equal to :date.',
@@ -19,7 +20,7 @@ return array (
     'array' => 'The :attribute must have between :min and :max items.',
   ),
   'boolean' => 'The :attribute field must be true or false.',
-  'confirmed' => 'The :attribute confirmation does not match.',
+  'confirmed' => 'كلمة المرور غير متطابقة',
   'date' => 'الرجاء ادخال صيغة التاريخ بالشكل الصحيح',
   'date_format' => 'The :attribute does not match the format :format.',
   'different' => 'The :attribute and :other must be different.',

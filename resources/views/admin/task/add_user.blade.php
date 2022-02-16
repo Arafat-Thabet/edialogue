@@ -24,15 +24,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-6">
-        <div class="form-group row mt-3 ">
-          <label class="col-md-3 col-lg-12">{{ __('User Name')}} <span class="required">*</span></label>
-          <div class="col-md-9 col-lg-12">
-            <input type="test" name="username" value="" class="form-control username" required>
-            <div class="invalid-feedback username_err"> </div>
-          </div>
-        </div>
-      </div>
+
       <div class="col-lg-6">
         <div class="form-group row mt-3 ">
           <label class="col-md-3 col-lg-12">{{ __('Email')}} <span class="required">*</span></label>
@@ -42,9 +34,47 @@
           </div>
         </div>
       </div>
+      <div class="col-lg-6">
+        <div class="form-group row mt-3 ">
+          <label class="col-md-3 col-lg-12">{{ __('Gender')}} <span class="required">*</span></label>
+          <div class="col-md-9 col-lg-12">
+            <select class="form-control gender" name="gender" required>
+              <option value="male">{{__('Male')}}</option>
+              <option value="female">{{__('Female')}}</option>
+
+            </select>
+            <div class="invalid-feedback gender_err"> </div>
+          </div>
+        </div>
+      </div>
     </div>
 
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="form-group row mt-3">
+          <label class="col-md-3 col-lg-12">{{ __('Department')}} <span class="required">*</span></label>
+          <div class="col-md-9 col-lg-12">
+            <select class="form-control department_id" name="department_id" required>
+              <option value=""></option>
 
+            </select>
+            <div class="invalid-feedback department_id_err"> </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="form-group row mt-3">
+          <label class="col-md-3 col-lg-12">{{ __('Direct Manager')}} <span class="required">*</span></label>
+          <div class="col-md-9 col-lg-12">
+            <select class="form-control direct_manager_id" name="direct_manager_id" required>
+              <option value=""></option>
+            </select>
+            <div class="invalid-feedback direct_manager_id_err"> </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
 
     <div class="row">
@@ -52,11 +82,11 @@
         <div class="form-group row mt-3">
           <label class="col-md-3 col-lg-12">{{ __('User role')}} <span class="required">*</span></label>
           <div class="col-md-9 col-lg-12">
-            <select class="form-control group_id" name="group_id" required>
+            <select class="form-control role_id" name="role_id" required>
               <option value=""></option>
 
             </select>
-            <div class="invalid-feedback group_id_err"> </div>
+            <div class="invalid-feedback role_id_err"> </div>
 
           </div>
         </div>
@@ -65,8 +95,8 @@
         <div class="form-group row mt-3">
           <label class="col-md-3 col-lg-12">{{ __('Password')}} <span class="required">*</span></label>
           <div class="col-md-9 col-lg-12">
-            <input type="password" name="pass" minlength="5" class="form-control" required>
-            <div class="invalid-feedback pass_err"> </div>
+            <input type="password" name="password" minlength="5" class="form-control" required>
+            <div class="invalid-feedback password_err"> </div>
           </div>
         </div>
       </div>
@@ -106,16 +136,16 @@
 
       var data = $("#hr-user-form").serialize();
       $.ajax({
-        url: "{{ route('save_ticket_user') }}",
+        url: "{{ route('save-task-user') }}",
         type: 'POST',
         dataType: 'json',
         data: data,
         success: function(data) {
           if (data.success == true) {
-            HRSuccessMsg("{{ __('User Account added successfully')}}", '{{__("Success")}}');
+            HRSuccessMsg(data.message, '{{__("Success")}}');
             var myModalEl = document.getElementById('ajaxModal');
-var modal = bootstrap.Modal.getInstance(myModalEl)
-modal.hide();
+            var modal = bootstrap.Modal.getInstance(myModalEl)
+            modal.hide();
           } else {
             printErrorMsg(data.errors);
             HRErrorMsg(data.message, '{{__("Error")}}');
@@ -136,12 +166,12 @@ modal.hide();
   });
 </script>
 <script>
-  $(".group_id").select2({
+  $(".role_id").select2({
     dropdownParent: $('#ajaxModal'),
     dir: "<?= app()->getLocale() == "ar" ? "rtl" : "ltr" ?>",
     language: "<?= app()->getLocale() == "ar" ? "ar" : "en" ?>",
     ajax: {
-      url: '<?= route("groups-list") ?>',
+      url: '<?= route("task-roles-list") ?>',
       data: function(params) {
         var query = {
           search: params.term,
@@ -151,6 +181,74 @@ modal.hide();
         return query;
       },
       processResults: function(data) {
+        var r_data = [];
+
+        var count = data.length;
+
+        for (i = 0; i < count; i++) {
+          r_data[i] = {
+            "id": data[i].id,
+            "text": data[i].name
+          }
+        }
+
+        return {
+          results: r_data
+        };
+      }
+    }
+
+  });
+  $(".direct_manager_id").select2({
+    dropdownParent: $('#ajaxModal'),
+    dir: "<?= sys_lang() == "ar" ? "rtl" : "ltr" ?>",
+    language: "<?= sys_lang() == "ar" ? "ar" : "en" ?>",
+    ajax: {
+      url: '<?= route("task-manager-list") ?>',
+      data: function(params) {
+        var query = {
+          search: params.term,
+          type: 'data'
+        }
+
+        return query;
+      },
+      processResults: function(data) {
+        // Transforms the top-level key of the response object from 'items' to 'results'
+        var r_data = [];
+
+        var count = data.length;
+
+        for (i = 0; i < count; i++) {
+          r_data[i] = {
+            "id": data[i].id,
+            "text": data[i].name
+          }
+        }
+
+        return {
+          results: r_data
+        };
+      }
+    }
+
+  });
+  $(".department_id").select2({
+    dropdownParent: $('#ajaxModal'),
+    dir: "<?= sys_lang() == "ar" ? "rtl" : "ltr" ?>",
+    language: "<?= sys_lang() == "ar" ? "ar" : "en" ?>",
+    ajax: {
+      url: '<?= route("task-dept-list") ?>',
+      data: function(params) {
+        var query = {
+          search: params.term,
+          type: 'data'
+        }
+
+        return query;
+      },
+      processResults: function(data) {
+        // Transforms the top-level key of the response object from 'items' to 'results'
         var r_data = [];
 
         var count = data.length;

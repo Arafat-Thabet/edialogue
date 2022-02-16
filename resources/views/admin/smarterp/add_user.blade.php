@@ -1,5 +1,5 @@
 <div class="m-3">
-  <form action="{{route('save_ticket_user')}}" method="post" id="hr-user-form">
+  <form action="{{route('save-erp-user')}}" method="post" id="hr-user-form">
     {{ csrf_field() }}
     <div class="row">
       <div class="col-lg-6">
@@ -106,7 +106,7 @@
 
       var data = $("#hr-user-form").serialize();
       $.ajax({
-        url: "{{ route('save_ticket_user') }}",
+        url: "{{ route('save-erp-user') }}",
         type: 'POST',
         dataType: 'json',
         data: data,
@@ -114,8 +114,8 @@
           if (data.success == true) {
             HRSuccessMsg("{{ __('User Account added successfully')}}", '{{__("Success")}}');
             var myModalEl = document.getElementById('ajaxModal');
-var modal = bootstrap.Modal.getInstance(myModalEl)
-modal.hide();
+            var modal = bootstrap.Modal.getInstance(myModalEl)
+            modal.hide();
           } else {
             printErrorMsg(data.errors);
             HRErrorMsg(data.message, '{{__("Error")}}');
@@ -141,7 +141,7 @@ modal.hide();
     dir: "<?= app()->getLocale() == "ar" ? "rtl" : "ltr" ?>",
     language: "<?= app()->getLocale() == "ar" ? "ar" : "en" ?>",
     ajax: {
-      url: '<?= route("groups-list") ?>',
+      url: '<?= route("erp-group-list") ?>',
       data: function(params) {
         var query = {
           search: params.term,

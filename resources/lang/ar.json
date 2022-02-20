@@ -46,7 +46,7 @@
     "Error": "خطأ",
     "success": "نجاح",
     "error": "خطأ",
-    "HR user": "مستخدم  اتش ار",
+    "HR user": "مستخدم  نظام شؤون الموظفين",
     "User role": "دور المستخدم",
     "Admin": "ادمن",
     "Normal User": "مستخدم عادي",
@@ -68,7 +68,7 @@
     "Profile Information": "معلومات الملف الشخصي",
     "Log Out": "تسجيل الخروج",
     "Task Managment User": "مستخدم ادارة المهام",
-    "ERP User": "مستخدم المحاسبي",
+    "ERP User": "مستخدم النظام المالي",
     "No problem. Just let us know your email address and we will email you a password reset link .": "لا مشكلة. فقط ادخل عنوان بريدك الإلكتروني وسنرسل لك رابط إعادة تعيين كلمة المرور الى البريد الإلكتروني",
     "Reset Password Link": "رابط اعادة تعيين كلمة المرور",
     "We can't find a user with that email address.": "لا يمكننا العثور على مستخدم بعنوان البريد الإلكتروني هذا",
@@ -81,5 +81,12 @@
     "Task Managment": "نظام المهام",
     "Smart ERP": "النظام المالي ",
     "Reset Password": "اعادة تعيين كلمة المرور",
-    "Update": "تحديث"
+    "Update": "تحديث",
+    "Edialogue": "ركن الحوار",
+    "Welcome": "مرحباً بك",
+    "Account Settings": "إعدادت الحساب",
+    "Language": " اللغة",
+    "English": "الانجليزية",
+    "Arabic": "العربية",
+    "The unified portal for the Edialogue": "البوابه الموحده لركن الحوار"
 }

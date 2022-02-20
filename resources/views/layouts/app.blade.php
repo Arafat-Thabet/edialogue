@@ -20,18 +20,19 @@
     <link href="{{asset('css/tailwind.css')}}" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('css/calendar/humanity.calendars.picker.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/style.css?1') }}">
-
+    <link rel="stylesheet" href="{{ asset('css/style.css?2') }}">
+    @if(app()->getLocale()=='en')
+    <link rel="stylesheet" href="{{ asset('css/ltr.css') }}">
+    @endif
     @if(app()->getLocale()=='ar')
     <link rel="stylesheet" href="{{ asset('css/rtl.css') }}">
-
     @endif
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.11.4/af-2.3.7/datatables.min.css" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/datatables.min.css') }}" />
     <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}" />
     <!-- Scripts -->
 </head>
 
-<body class="font-sans antialiased" <?= app()->getLocale() == 'ar' ? 'style="direction: rtl;"' : '' ?>>
+<body class="font-sans antialiased {{ app()->getLocale() == 'ar' ? 'dir-rtl' : 'dir-ltr'}}" >
     <x-jet-banner />
 
     <div class="bo-wrapper bo-fixed-sidebar">
@@ -67,7 +68,7 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/index.js') }}"></script>
     <script src="{{ asset('js/sweetalert2.11.js') }}"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.4/af-2.3.7/datatables.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/datatables.min.js') }}"></script>
 </body>
 
 </html>

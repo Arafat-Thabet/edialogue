@@ -7,8 +7,8 @@
                         <div class="user-data">
                             <img src="{{asset('img/avatar.png')}}">
                         </div>
-                        <div class="">
-                        <h4>مرحبا بعودتك</h4>
+                        <div class="welcome-user">
+                        <h4>{{__('Welcome')}}</h4>
                             <span class="user-name">{{auth()->user()->name}}</span>
                         </div>
                     </div>
@@ -34,18 +34,18 @@
             </button>
             <a class="navbar-brand" href="#"><img src="{{asset('img/ficon.png')}}"></a>
         </div>
-        <div class="right-sidebar-spacer navbar-collapse collapse" id="navbarSupportedContent" style="">
+        <div class="right-sidebar-spacer navbar-collapse collapse" id="navbarSupportedContent" >
             <div class="sidebar-logo">
-                <img src="{{asset('img/logo-dash.png')}}" class="side-logo">
+            <a href="{{ route('dashboard') }}"><img src="{{asset('img/logo-dash.png')}}" class="side-logo"></a>
             </div>
             <div class="right-sidebar-scroll">
                 <div class="right-sidebar-content">
                     <ul class="sidebar-elements">
                         <li class="active">
-                            <a href="{{ route('dashboard') }}"><i class="fa fa-home menu-icon"></i> ركن الحوار</a>
+                            <a href="{{ route('dashboard') }}"><i class="fa fa-home menu-icon"></i> {{__('Edialogue')}}</a>
                         </li>
                         <li>
-                            <a href="{{ route('profile') }}"><i class="fa fa-cog menu-icon"></i> إعدادات البروفايل</a>
+                            <a href="{{ route('profile') }}"><i class="fa fa-cog menu-icon"></i> {{__('Account Settings')}}</a>
                         </li>
                         @if(is_admin())
                         <li> <a  href="{{route('add_member')}}"> <i class="fa fa-plus-circle menu-icon"></i> {{ __('Add new member') }}</a></li>

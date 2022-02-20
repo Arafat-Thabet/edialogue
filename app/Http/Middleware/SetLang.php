@@ -3,9 +3,11 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use GuzzleHttp\Psr7\Request;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
-class SetLang {
+class SetLang
+{
     /**
      * Handle an incoming request.
      *
@@ -13,13 +15,11 @@ class SetLang {
      * @param \Closure $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next) {
-        // $lang = 'en';
-        
-        // $request->attributes->add(['lang' => 'en']);
-        $request->route()->setParameter('lang', 'ar');
-        // $request->request->set('lang', 'en');
-
-        return $next($request);
+    public function handle(Request $request, Closure $next)
+    {
+        $lang = isset(auth()->user()->lang) ? auth()->user()->lang : 'ar';
+        if (in_array($lang, ['en', 'ar']))
+            App::setLocale($lang);
+            return $next($request);
     }
 }

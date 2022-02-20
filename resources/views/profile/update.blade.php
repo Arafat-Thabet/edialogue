@@ -22,7 +22,20 @@
 
           </div>
         </div>
+        <div class="form-group row mt-3 ">
+          <label class="col-md-3 col-lg-2">{{ __('Language')}} <span class="required">*</span></label>
+          <div class="col-md-9 col-lg-10">
+        <select name="lang" class="form-control">
+<option value="ar" {{$user->lang=='ar'?'selected':''}} >
+{{ __('Arabic')}} 
+</option>
+<option value="en"  {{$user->lang=='en'?'selected':''}} >
+{{ __('English')}} 
+</option>
+        </select>
 
+          </div>
+        </div>
         <div class="form-group  row mt-3">
         <div class="col-md-3 col-lg-2"></div>
           <div class="col-md-8">

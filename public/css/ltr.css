@@ -1,0 +1,57 @@
+.book-evaluate {
+    padding-left: 20px !important;
+    text-align: right;
+}
+
+.bo-top-header .bo-left-navbar {
+    padding-right: auto;
+    padding-left: 250px;
+}
+
+body {
+    direction: ltr;
+    text-align: left;
+}
+
+.bo-right-sidebar {
+    right: auto;
+    left: 0;
+}
+
+.bo-right-sidebar .sidebar-elements>li>a {
+    text-align: left;
+}
+
+.bo-content {
+    margin-left: 230px;
+    margin-right: auto;
+    text-align: start;
+}
+
+.bo-right-sidebar:before {
+    content: "";
+    right: auto;
+    left: 0;
+}
+
+.menu-icon {
+    margin-right: 5px;
+}
+
+.welcome-user {
+    margin-left: 10px;
+}
+
+.bo-top-header .bo-left-navbar {
+    padding-left: 250px;
+    padding-right: unset;
+}
+
+select {
+    background-position: right 1px bottom 5px !important;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+    float: left;
+    padding-left: .5rem;
+}

@@ -30,7 +30,7 @@
     <div class="right-sidebar-wrapper">
         <div class="mobile-toggle">
             <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
+                <i class="fa fa-bars"></i>
             </button>
             <a class="navbar-brand" href="#"><img src="{{asset('img/ficon.png')}}"></a>
         </div>

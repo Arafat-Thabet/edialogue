@@ -55,3 +55,13 @@ select {
     float: left;
     padding-left: .5rem;
 }
+
+@media (max-width: 575.98px) {
+    .bo-content {
+        margin-right: 0;
+        margin-left: 0px;
+    }
+    .bo-top-header .bo-left-navbar {
+        padding-left: 0px;
+    }
+}

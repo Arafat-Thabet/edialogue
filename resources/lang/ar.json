@@ -70,7 +70,7 @@
     "Task Managment User": "مستخدم ادارة المهام",
     "ERP User": "مستخدم المحاسبي",
     "No problem. Just let us know your email address and we will email you a password reset link .": "لا مشكلة. فقط ادخل عنوان بريدك الإلكتروني وسنرسل لك رابط إعادة تعيين كلمة المرور الى البريد الإلكتروني",
-    "Reset Password Link": "رابط اعادة تعين كلمة المرور",
+    "Reset Password Link": "رابط اعادة تعيين كلمة المرور",
     "We can't find a user with that email address.": "لا يمكننا العثور على مستخدم بعنوان البريد الإلكتروني هذا",
     "User Account added successfully": "تم اضافة الحساب بنجاح",
     "Linked": "تم الربط",
@@ -79,5 +79,7 @@
     "Smart HR": "نظام شؤون الموظفين",
     "Smart Tickets": "نظام التذاكر",
     "Task Managment": "نظام المهام",
-    "Smart ERP": "النظام المالي "
+    "Smart ERP": "النظام المالي ",
+    "Reset Password": "اعادة تعيين كلمة المرور",
+    "Update": "تحديث"
 }

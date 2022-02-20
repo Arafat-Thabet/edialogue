@@ -19,6 +19,7 @@ class Dashboard extends Controller
             $data['ticket_url']=TicketsAPI::loginUrl(Auth::user()->ticket_user_id);
             $data['task_url']=TaskAPI::loginUrl(Auth::user()->task_user_id);
             $data['erp_url']=ErpAPI::loginUrl(Auth::user()->erp_user_id);
+            $data['user']=Auth::user();
             return  view('dashboard', $data);
         } else
             return view('auth/login');

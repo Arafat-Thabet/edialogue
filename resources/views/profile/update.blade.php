@@ -23,9 +23,10 @@
           </div>
         </div>
 
-        <div class="form-group text-end row mt-3">
-          <div class="col-md-12">
-            <button type="submit" class="btn btn-primary">{{ __('Save')}}</button>
+        <div class="form-group  row mt-3">
+        <div class="col-md-3 col-lg-2"></div>
+          <div class="col-md-8">
+            <button type="submit" class="btn btn-primary">{{ __('Update')}}</button>
           </div>
         </div>
      
@@ -62,9 +63,10 @@
 
       </div>
     </div>
-    <div class="form-group text-end row mt-3">
-      <div class="col-md-12">
-        <button type="submit" class="btn btn-primary">{{ __('Save')}}</button>
+    <div class="form-group  row mt-3">
+    <div class="col-md-3 col-lg-2"></div>
+      <div class="col-md-8">
+        <button type="submit" class="btn btn-primary">{{ __('Update')}}</button>
       </div>
     </div>
  

@@ -2,7 +2,7 @@
 <x-app-layout>
 <script srsc="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
 <div class="flex  justify-center bg-gray-100">
-<div class="col-lg-11">
+<div class="col-lg-12">
   <section class="p-5 content bg-white">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
@@ -11,18 +11,23 @@
       </ol>
     </nav>
     <div class="container">
-    <table class="table table-striped" id="users-table">
+        <div class="table-responsive">
+    <table class="table table-borderd" id="users-table">
 <thead>
-    <th>{{__('id')}}</th>
     <th>{{__('Name')}}</th>
     <th>{{__('Email')}}</th>
     <th>{{ __('Smart HR')}}</th>
     <th> {{ __('Task Managment')}}</th>
     <th> {{ __('Smart ERP')}}</th>
     <th> {{ __('Smart Tickets')}}</th>
+    <th> {{ __('Admin')}}</th>
     <th>{{__('Action')}}</th>
 </thead>
+<tbody class="text-center">
+
+</tbody>
     </table>
+    </div>
     </div>
   </section>
   </div>
@@ -53,13 +58,14 @@
             ajax: "{{route('members')}}",
             aoColumns: [
       
-        { mData: 'id' },
+       
         { mData: 'name' },
         { mData: 'email' },
         { mData: 'hr' },
         { mData: 'task' },
         { mData: 'erp' },
         { mData: 'ticket' },
+        { mData: 'role' },
         { mData: 'action' },
         
   

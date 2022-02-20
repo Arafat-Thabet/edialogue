@@ -40,7 +40,7 @@ class TeamMember extends Controller
     }
     public function getData()
     {
-        $users = User::select(['id', 'name', 'email', 'hr_user_id', 'task_user_id','erp_user_id','ticket_user_id'])->where("id",">",1);
+        $users = User::select(['id', 'name', 'email', 'hr_user_id', 'task_user_id','erp_user_id','ticket_user_id','role_id'])->where("id",">",1);
 
         return Datatables::of($users)
             ->addColumn('action', function ($row) {
@@ -49,15 +49,14 @@ class TeamMember extends Controller
                 $edit_lang = __('Edit');
                 $delete_lang = __('Delete');
                 $btn = '';
-                $btn = $btn . '<a  href="' . $edit_url . '" title="' . $edit_lang . '" class="edit mt-1 btn btn-primary btn-sm">' . $edit_lang . '</a>';
-                $btn = $btn . ' <a link="' . $delete_url . '" title="' . $delete_lang . '" class="edit mt-1 btn btn-danger delete-btn btn-sm">' . $delete_lang . '</a>';
+                $btn = $btn . '<a  href="' . $edit_url . '" title="' . $edit_lang . '" class="edit mt-1 btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>';
+                $btn = $btn . ' <a link="' . $delete_url . '" title="' . $delete_lang . '" class="edit mt-1 btn btn-danger delete-btn btn-sm"><i class="fa fa-trash"></i></a>';
 
                 return $btn;
             })
             ->addColumn('hr', function ($row) {
-             $linked=__('Linked');
-             $linked=$linked;
-             $unlinked=__('Unlinked');
+                $linked='<i class="fa fa-check-circle text-success"></i> ';
+                $unlinked='<i class="fa fa-times-circle text-danger"></i> ';
              if($row->hr_user_id>0)
                 return $linked;
                 else
@@ -65,17 +64,17 @@ class TeamMember extends Controller
 
             })
             ->addColumn('task', function ($row) {
-                $linked=__('Linked');
-                $unlinked=__('Unlinked');
+                $linked='<i class="fa fa-check-circle text-success"></i> ';
+                $unlinked='<i class="fa fa-times-circle text-danger"></i> ';
                 if($row->task_user_id>0)
                    return $linked;
                    else
                    return $unlinked;
-   
                })
                ->addColumn('erp', function ($row) {
-                $linked=__('Linked');
-                $unlinked=__('Unlinked');
+                $linked='<i class="fa fa-check-circle text-success"></i> ';
+                $unlinked='<i class="fa fa-times-circle text-danger"></i> ';
+
                 if($row->erp_user_id>0)
                    return $linked;
                    else
@@ -83,15 +82,26 @@ class TeamMember extends Controller
    
                })
                ->addColumn('ticket', function ($row) {
-                $linked=__('Linked');
-                $unlinked=__('Unlinked');
+                $linked='<i class="fa fa-check-circle text-success"></i> ';
+                $unlinked='<i class="fa fa-times-circle text-danger"></i> ';
                 if($row->ticket_user_id>0)
                    return $linked;
                    else
                    return $unlinked;
    
                })
-            ->rawColumns(['action','hr'])
+               ->addColumn('role', function ($row) {
+                $admin=__('Admin');
+                $user=__('Normal User');
+                $admin='<i class="fa fa-check-circle text-success"></i> ';
+                $user='<i class="fa fa-times-circle text-danger"></i> ';
+                if($row->role_id==1)
+                   return $admin;
+                   else
+                   return $user;
+   
+               })
+            ->rawColumns(['action','hr','erp','task','ticket','role'])
     
             ->make(true);
     }

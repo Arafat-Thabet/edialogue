@@ -43,7 +43,7 @@
             <select class="form-control emp-select2" name="hr_user_id">
               <option value="0"></option>
             </select>
-            <?=modal_anchor(route('add-hr-employee'),__('Add'),array('class'=>'btn btn-sm btn-primary',"title"=>__('Add'),'data-modal-xl'=>"1"))?>
+            <?=modal_anchor(route('add-hr-employee'),'<i class="fa fa-plus"></i>',array('class'=>'btn btn-sm btn-primary add-user-btn' ,"title"=>__('Add'),'data-modal-xl'=>"1"))?>
           </div>
         </div>
         <div class="form-group row mt-3">
@@ -52,7 +52,7 @@
             <select class="form-control ticket-select2" name="ticket_user_id">
               <option value="0"></option>
             </select>
-            <?=modal_anchor(route('add-ticket-user'),__('Add'),array('class'=>'btn btn-sm btn-primary',"title"=>__('Add'),'data-modal-xl'=>"1"))?>
+            <?=modal_anchor(route('add-ticket-user'),'<i class="fa fa-plus"></i>',array('class'=>'btn btn-sm btn-primary add-user-btn',"title"=>__('Add'),'data-modal-xl'=>"1"))?>
 
           </div>
         </div>
@@ -62,7 +62,7 @@
             <select class="form-control task-select2" name="task_user_id">
               <option value="0"></option>
             </select>
-            <?=modal_anchor(route('add-task-user'),__('Add'),array('class'=>'btn btn-sm btn-primary',"title"=>__('Add'),'data-modal-xl'=>"1"))?>
+            <?=modal_anchor(route('add-task-user'),'<i class="fa fa-plus"></i>',array('class'=>'btn btn-sm btn-primary add-user-btn',"title"=>__('Add'),'data-modal-xl'=>"1"))?>
 
           </div>
         </div>
@@ -72,7 +72,7 @@
             <select class="form-control erp-select2" name="erp_user_id">
               <option value="0"></option>
             </select>
-            <?=modal_anchor(route('add-erp-user'),__('Add'),array('class'=>'btn btn-sm btn-primary',"title"=>__('Add'),'data-modal-xl'=>"1"))?>
+            <?=modal_anchor(route('add-erp-user'),'<i class="fa fa-plus"></i>',array('class'=>'btn btn-sm  btn-primary add-user-btn',"title"=>__('Add'),'data-modal-xl'=>"1"))?>
 
           </div>
         </div>
@@ -89,8 +89,9 @@
 
           </div>
         </div>
-        <div class="form-group text-end row mt-3">
-          <div class="col-md-12">
+        <div class="form-group   row mt-3">
+          <div class="col-md-3 col-lg-2"></div>
+          <div class="col-md-8">
             <button type="submit" class="btn btn-primary">{{ __('Save')}}</button>
           </div>
         </div>
@@ -121,9 +122,12 @@
         var r_data = [];
 
         var count = data.length;
-
+        r_data[0] = {
+              "id": 0,
+              "text": '......'
+            }
         for (i = 0; i < count; i++) {
-          r_data[i] = {
+          r_data[i+1] = {
             "id": data[i].id,
             "text": data[i].name
           }
@@ -154,9 +158,12 @@
         var r_data = [];
 
         var count = data.length;
-
+        r_data[0] = {
+              "id": 0,
+              "text": '......'
+            }
         for (i = 0; i < count; i++) {
-          r_data[i] = {
+          r_data[i+1] = {
             "id": data[i].id,
             "text": data[i].name
           }
@@ -188,9 +195,12 @@
         var r_data = [];
 
         var count = data.length;
-
+        r_data[0] = {
+              "id": 0,
+              "text": '......'
+            }
         for (i = 0; i < count; i++) {
-          r_data[i] = {
+          r_data[i+1] = {
             "id": data[i].id,
             "text": data[i].name
           }
@@ -221,9 +231,12 @@
         var r_data = [];
 
         var count = data.length;
-
+        r_data[0] = {
+              "id": 0,
+              "text": '......'
+            }
         for (i = 0; i < count; i++) {
-          r_data[i] = {
+          r_data[i+1] = {
             "id": data[i].id,
             "text": data[i].name
           }

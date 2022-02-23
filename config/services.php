@@ -29,5 +29,9 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
-
+    'google' => [
+        'client_id' => '453474964296-3cbk4ipqo45d2h9j4vjmpg2f1brv6l86.apps.googleusercontent.com',
+        'client_secret' => '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',
+        'redirect' => 'https://edialogue.smart-hr.top/auth/google/callback',
+    ],
 ];

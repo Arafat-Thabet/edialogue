@@ -160,7 +160,7 @@ class TeamMember extends Controller
         $user = User::findOrFail($id);
         $get['id'] = intval($user->hr_user_id);
         $data['user'] = $user;
-        $data['hr_users'] = $this->smarthr->getEmployee($get);
+      /*  $data['hr_users'] = $this->smarthr->getEmployee($get);
         $ticket_filter['id']=intval($user->ticket_user_id);
         $ticket = new  TicketsAPI();
         $data['ticket_users'] =$ticket->getUser($ticket_filter);
@@ -169,7 +169,7 @@ class TeamMember extends Controller
         $data['erp_users'] =  $erp->getUser($erp_filter);
         $task = new  TaskAPI();
         $task_filter['id']=intval($user->task_user_id);
-        $data['task_users'] = $task->getUser($task_filter);
+        $data['task_users'] = $task->getUser($task_filter);*/
         return  view('admin/team_member/edit', $data);
     }
 

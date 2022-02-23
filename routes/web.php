@@ -6,6 +6,7 @@ use App\Http\Controllers\admin\Ticket;
 use App\Http\Controllers\admin\Task;
 use App\Http\Controllers\Profile;
 use App\Http\Controllers\Dashboard;
+use App\Http\Controllers\GoogleController;
 use App\Http\Middleware\SetLang;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -62,3 +63,8 @@ Route::get('profile',[Profile::class,'index'])->name('profile');
 Route::post('profile/update-info',[Profile::class,'updateInfo'])->name('profile-update-info');
 Route::post('profile/update-password',[Profile::class,'updatePassword'])->name('profile-update-password');
 });
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
+Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+Route::get('auth/unallowed_email', function(){
+    return view('unallowed_email');
+})->name('unallowed_email');

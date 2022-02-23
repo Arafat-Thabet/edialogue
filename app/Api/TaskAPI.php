@@ -54,4 +54,13 @@ class TaskAPI
         ])->get(task_base_url('api/users/departments_list'), $get);
         return response()->json($response->object()->data);
     }
+    public static function checkUserEmail($email)
+    {
+        $post['email']=$email;
+        $response = Http::withHeaders([
+            'Access-Token' => self::$token
+        ])->post(task_base_url('api/users/check_user_email'), $post);
+        return (isset($response->object()->user_id) ? $response->object()->user_id : 0);
+    }
 }
+  

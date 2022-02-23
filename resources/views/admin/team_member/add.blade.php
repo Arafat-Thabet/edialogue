@@ -38,39 +38,43 @@
           </div>
         </div>
         <div class="form-group row mt-3">
-          <label class="col-md-3 col-lg-2">{{ __('HR user')}}</label>
+          <label class="col-md-3 col-lg-2">{{ __('Smart HR')}}</label>
           <div class="col-md-9 col-lg-10">
-            <select class="form-control emp-select2" name="hr_user_id">
-              <option value="0"></option>
+            <select class="form-control select2" name="hr_user_id">
+              <option value="1">{{__('Enable')}}</option>
+              <option value="0">{{__('Disable')}}</option>
             </select>
             <?=modal_anchor(route('add-hr-employee'),'<i class="fa fa-plus"></i>',array('class'=>'btn btn-sm btn-primary add-user-btn' ,"title"=>__('Add'),'data-modal-xl'=>"1"))?>
           </div>
         </div>
         <div class="form-group row mt-3">
-          <label class="col-md-3 col-lg-2">{{ __('Ticket User')}}</label>
+          <label class="col-md-3 col-lg-2">{{ __('Smart Tickets')}}</label>
           <div class="col-md-9 col-lg-10">
-            <select class="form-control ticket-select2" name="ticket_user_id">
-              <option value="0"></option>
+            <select class="form-control select2" name="ticket_user_id">
+            <option value="1">{{__('Enable')}}</option>
+              <option value="0">{{__('Disable')}}</option>
             </select>
             <?=modal_anchor(route('add-ticket-user'),'<i class="fa fa-plus"></i>',array('class'=>'btn btn-sm btn-primary add-user-btn',"title"=>__('Add'),'data-modal-xl'=>"1"))?>
 
           </div>
         </div>
         <div class="form-group row mt-3">
-          <label class="col-md-3 col-lg-2">{{ __('Task Managment User')}}</label>
+          <label class="col-md-3 col-lg-2">{{ __('Task Managment')}}</label>
           <div class="col-md-9 col-lg-10">
-            <select class="form-control task-select2" name="task_user_id">
-              <option value="0"></option>
+            <select class="form-control select2" name="task_user_id">
+            <option value="1">{{__('Enable')}}</option>
+              <option value="0">{{__('Disable')}}</option>
             </select>
             <?=modal_anchor(route('add-task-user'),'<i class="fa fa-plus"></i>',array('class'=>'btn btn-sm btn-primary add-user-btn',"title"=>__('Add'),'data-modal-xl'=>"1"))?>
 
           </div>
         </div>
         <div class="form-group row mt-3">
-          <label class="col-md-3 col-lg-2">{{ __('ERP User')}}</label>
+          <label class="col-md-3 col-lg-2">{{ __('Smart ERP')}}</label>
           <div class="col-md-9 col-lg-10">
-            <select class="form-control erp-select2" name="erp_user_id">
-              <option value="0"></option>
+            <select class="form-control select2" name="erp_user_id">
+            <option value="1">{{__('Enable')}}</option>
+              <option value="0">{{__('Disable')}}</option>
             </select>
             <?=modal_anchor(route('add-erp-user'),'<i class="fa fa-plus"></i>',array('class'=>'btn btn-sm  btn-primary add-user-btn',"title"=>__('Add'),'data-modal-xl'=>"1"))?>
 
@@ -79,7 +83,7 @@
         <div class="form-group row mt-3">
           <label class="col-md-3 col-lg-2">{{ __('User role')}} <span class="required">*</span></label>
           <div class="col-md-9 col-lg-10">
-            <select class="form-control {{ $errors->has('role_id') ? 'is-invalid' : ''}}" name="role_id" required>
+            <select class="form-control select2 {{ $errors->has('role_id') ? 'is-invalid' : ''}}" name="role_id" required>
               <option value=""></option>
 
               <option value="1" {{old('role_id')==1 ? 'selected' :''}}>{{ __('Admin')}}</option>
@@ -248,6 +252,10 @@
       }
     }
 
+  });
+  $(".select2").select2({
+    dir: "<?= sys_lang() == "ar" ? "rtl" : "ltr" ?>",
+    language: "<?= sys_lang() == "ar" ? "ar" : "en" ?>",
   });
 });
 </script>

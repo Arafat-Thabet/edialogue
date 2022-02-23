@@ -40,7 +40,7 @@ class SmartHRAPI
     {
         $token =   self::$token;
         $data['token'] = $token;
-        $data['company'] = 'newtest';
+        $data['company'] = 'edialogue';
         $data['user_id'] = $user_id;
         $encrypt_url=encrypt_url($data);
         $url=hr_api_url('login/edialogue?uri='.$encrypt_url);
@@ -89,5 +89,12 @@ class SmartHRAPI
         return $response->object();
     }
     
-    
+    public static function checkUserEmail($email)
+    {
+        $post['email']=$email;
+        $response = Http::withHeaders([
+            'authorization' => self::$token
+        ])->post(hr_api_url('api/edialogue/check_user_email'), $post);
+        return (isset($response->object()->user_id) ? $response->object()->user_id : 0);
+    }
 }

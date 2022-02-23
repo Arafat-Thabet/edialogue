@@ -47,13 +47,21 @@
 
           
             </div>
+       
             <div class="text-left">
-
             <x-jet-button class="ml-4">
                     {{ __('Log in') }}
                 </x-jet-button>
+              
                 </div>
+                <div class="text-left google">
+                <a  href="{{ url('auth/google') }}">
+                    <img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" style="margin-left: 3em;">
+                </a>
+                </div>
+               
         </form>
+     
     </x-jet-authentication-card>
 </x-guest-layout>
 </section>

@@ -90,5 +90,18 @@
     "Arabic": "العربية",
     "The unified portal for the Edialogue": "البوابه الموحده لركن الحوار",
     "Enable": "تفعيل",
-    "Disable": "الغاء تفعيل"
+    "Disable": "الغاء تفعيل",
+    "Access request": "طلب صلاحية الوصول",
+    "Request Sended successfully": "تم ارسال الطلب بنجاح",
+    "Title": "العنوان",
+    "Sender": "المرسل",
+    "Created at": "التاريخ",
+    "System access request": "طلب صلاحية الوصول الى ",
+    "Notifications": "الاشعارات",
+    "Accept request": "معالجة الطلب",
+    "Accepted request": "تم معالجة الطلب",
+    "This user is not add in System": "المستخدم ليس لدية حساب مضاف على نفس الايميل على    ",
+    "This user is not active in System": "الحساب غير مفعل على ",
+    "Account activated successfully": "تم تفعيل الحساب",
+    "Active System": "تفعيل الحساب"
 }

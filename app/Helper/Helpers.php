@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\Notifications;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 if (!function_exists('hr_api_url')) {
 	function hr_api_url($url = '')
@@ -148,4 +150,58 @@ if (!function_exists('sys_lang')) {
 	{
 		return app()->getLocale();
 	}
+}
+if (!function_exists('noneReadedNotice')) {
+
+	function noneReadedNotice()
+	{
+		$user_id=auth()->user()->id;
+		$result =Notifications::whereRaw("FIND_IN_SET('$user_id',notify_to)!=0")->whereRaw("FIND_IN_SET('$user_id',read_by)=0")->get()->count();
+	
+		if($result>0){
+			return '<span class="badge badge-pill badge-danger">'.$result.'</span>';
+		}
+		return '';
+	}
+}
+
+  /**
+   * send mail
+   * 
+   * @param string $to
+   * @param string $subject
+   * @param string $message
+   * @param array $optoins
+   * @return true/false
+   */
+  if (!function_exists('send_email')) {
+   function send_email($to, $message, $subject, $optoins = array())
+  {
+    
+    $data['to'] = $to;
+    $data['subject'] = $subject;
+    $data['message'] = $message;
+    $data['optoins'] = $optoins;
+    $html_messages = '';
+    $html_messages = '<html>
+          <head>
+           <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+           <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+         </head><body>';
+    $html_messages .= $message;
+
+    $html_messages .= '</body></html>';
+   return  Mail::html(
+      $html_messages,
+      function ($message) use ($data) {
+        if (is_array($data['to'])) {
+          foreach ($data['to'] as $to)
+            $message->to($to['email'], $to['name']);
+        } else {
+          $message->to($data['to']);
+        }
+        $message->subject($data['subject']);
+      }
+    );
+  }
 }

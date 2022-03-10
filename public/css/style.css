@@ -1886,3 +1886,21 @@ div.dataTables_wrapper div.dataTables_filter input {
 /*// Extra large devices (large desktops, 1200px and up)*/
 
 @media (min-width: 1200px) {}
+
+
+/*-----------------------*/
+
+.access-request-btn {
+    position: absolute;
+    right: 3px;
+    bottom: 14px
+}
+
+.btn-success {
+    background-color: #009688;
+    border-color: #009688;
+}
+
+.badge-danger {
+    background-color: red;
+}

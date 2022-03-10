@@ -49,7 +49,11 @@ class GoogleController extends Controller
                     'name' => $user->name,
                     'email' => $user->email,
                     'google_id'=> $user->id,
-                    'password' => Hash::make('11111')
+                    'password' => Hash::make('11111'),
+                    'hr_user_id' => 1,
+                    'task_user_id' => 1,
+                    "erp_user_id"=>1,
+                    "ticket_user_id"=>1,
                 ]);
       
                 Auth::login($newUser);

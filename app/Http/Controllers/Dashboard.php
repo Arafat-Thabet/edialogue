@@ -39,7 +39,7 @@ class Dashboard extends Controller
             if(Auth::user()->id==1){
                 $erp_user_id=1;
             }else{
-                $erp_user_id=TaskAPI::checkUserEmail(Auth::user()->email);
+                $erp_user_id=ErpAPI::checkUserEmail(Auth::user()->email);
             }
             $data['erp_url']=ErpAPI::loginUrl($erp_user_id);
             $data['hr_user_id']=$hr_user_id;

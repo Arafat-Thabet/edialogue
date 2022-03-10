@@ -50,7 +50,8 @@
                         @if(is_admin())
                         <li> <a  href="{{route('add_member')}}"> <i class="fa fa-plus-circle menu-icon"></i> {{ __('Add new member') }}</a></li>
                         <li> <a  href="{{route('members_list')}}"> <i class="fa fa-users menu-icon"></i> {{ __('Members List') }}</a>   </li>
-
+                        <li> <a  href="{{route('notifications-list')}}"> <i class="fa fa-bell menu-icon"></i> {{ __('Notifications') }} <?=noneReadedNotice()?></a>   </li>
+                        
                         @endif
                         <li>
                             <form  action="{{route('logout')}}" method="POST">

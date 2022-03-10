@@ -6,7 +6,9 @@ use App\Http\Controllers\admin\Ticket;
 use App\Http\Controllers\admin\Task;
 use App\Http\Controllers\Profile;
 use App\Http\Controllers\Dashboard;
+use App\Http\Controllers\EdSystem;
 use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Middleware\SetLang;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -22,11 +24,11 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::middleware(['auth:sanctum', 'verified','lang'])->get('/', [Dashboard::class, 'index']);
+Route::middleware(['auth:sanctum', 'verified', 'lang'])->get('/', [Dashboard::class, 'index']);
 
-Route::middleware(['auth:sanctum', 'verified','lang'])->get('/dashboard', [Dashboard::class, 'index'])->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified', 'lang'])->get('/dashboard', [Dashboard::class, 'index'])->name('dashboard');
 
-Route::middleware(['admin','lang'])->prefix('admin')->group(function () {
+Route::middleware(['admin', 'lang'])->prefix('admin')->group(function () {
     Route::get('add-member', [TeamMember::class, 'add'])->name('add_member');
     Route::get('hr-employees', [TeamMember::class, 'getHREmployees'])->name('hr-employees');
     Route::post('save-member', [TeamMember::class, 'store'])->name('save_member');
@@ -57,14 +59,20 @@ Route::middleware(['admin','lang'])->prefix('admin')->group(function () {
     Route::get('add-erp-user', [Smarterp::class, 'add'])->name('add-erp-user');
     Route::get('erp-group-list', [Smarterp::class, 'getGroupsList'])->name('erp-group-list');
     Route::post('save-erp-user', [Smarterp::class, 'storeUser'])->name('save-erp-user');
+    Route::get('notifications-data', [NotificationController::class, 'getData'])->name('notifications-data');
+    Route::get('notifications-list', [NotificationController::class, 'index'])->name('notifications-list');
+    Route::get('system/accept-request/{type}/{id}', [NotificationController::class, 'accept_request'])->name('accept-request');
+    Route::get('system/set-active-system/{user_id}/{type}', [NotificationController::class, 'setActivesystem'])->name('set-active-system');
+    
 });
 Route::middleware('lang')->group(function () {
-Route::get('profile',[Profile::class,'index'])->name('profile');
-Route::post('profile/update-info',[Profile::class,'updateInfo'])->name('profile-update-info');
-Route::post('profile/update-password',[Profile::class,'updatePassword'])->name('profile-update-password');
+    Route::get('profile', [Profile::class, 'index'])->name('profile');
+    Route::post('profile/update-info', [Profile::class, 'updateInfo'])->name('profile-update-info');
+    Route::post('profile/update-password', [Profile::class, 'updatePassword'])->name('profile-update-password');
+    Route::get('active-system/{sys_type}', [EdSystem::class, 'sendActiveSystem'])->name('active-system');
 });
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
-Route::get('auth/unallowed_email', function(){
+Route::get('auth/unallowed_email', function () {
     return view('unallowed_email');
 })->name('unallowed_email');

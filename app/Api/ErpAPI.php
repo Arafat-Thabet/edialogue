@@ -61,6 +61,7 @@ class ErpAPI
         $response = Http::withHeaders([
             'authorization' => self::$token
         ])->get(erp_url('api/cdialog/user'), $get);
+       
         return (isset($response->object()->user_id) ? $response->object()->user_id : 0);
     }
 }

@@ -20,6 +20,5 @@ class Notifications extends Model
         "created_by"
         
     ];
-    protected $table = 'notifications';
     public $timestamps = false;
 }

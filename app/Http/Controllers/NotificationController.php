@@ -56,8 +56,7 @@ class NotificationController extends Controller
         $check_active = $this->checkActiveUser($user, $notice->event);
         
         $data['check_id'] = $check_id;
-       $data['check_active_sys'] = $check_active ;
-        
+  
         $user_id=auth()->user()->id;
         $sql = "FIND_IN_SET('$user_id',send_to)!=0 ";
         $check =Notifications::select('*')->whereRaw("FIND_IN_SET('$user_id',notify_to)!=0")->whereRaw("FIND_IN_SET('$user_id',read_by)=0")->get()->first();
@@ -70,14 +69,14 @@ class NotificationController extends Controller
     }
     private function checkUser($user, $sys_type)
     {
-       return 0;
+       
         if (!isset($user->email)) {
             return 0;
         }
         if ($sys_type == 'active_hr')
             return SmartHRAPI::checkUserEmail($user->email);
         if ($sys_type == 'active_task')
-            return TaskAPI::checkUserEmail($user->email);
+            return  TaskAPI::checkUserEmail($user->email);
         if ($sys_type == 'active_ticket')
             return TicketsAPI::checkUserEmail($user->email);
         if ($sys_type == 'active_erp')
@@ -85,8 +84,7 @@ class NotificationController extends Controller
     }
     private function checkActiveUser($user, $sys_type)
     {
-        return 0;
-
+    
         if ($sys_type == 'active_hr')
             return $user->hr_user_id;
         if ($sys_type == 'active_task')
@@ -117,5 +115,4 @@ class NotificationController extends Controller
         return returnMsg('success', 'admin/members-list', __('Account activated successfully'));
 
     }
-   
 }

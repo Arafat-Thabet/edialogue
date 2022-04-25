@@ -66,7 +66,7 @@ class EdSystem extends Controller
                   <tbody>
                     <tr>
                       <td   style="font-family:Arial, sans-serif;font-weight: bold;margin-top: 10px;margin-bottom: 0px;font-size: 1.3em;line-height: 21px;" align="center">
-                        <h3  style="outline:none;color:#ffffff;display:block;padding: 7px 16px;padding-top:30px;"> البوابة الموحدة لركن الجوار</h3>
+                        <h3  style="outline:none;color:#ffffff;display:block;padding: 7px 16px;padding-top:30px;line-height: 24px;"> البوابة الموحدة لركن الحوار</h3>
                       </td>
                     </tr>
                   </tbody>

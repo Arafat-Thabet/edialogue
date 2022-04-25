@@ -30,7 +30,7 @@ class Profile extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->lang = $request->lang;
-        
+
         $user->save();
      
         return returnMsg('success', 'profile', __('Information updated successfully'));

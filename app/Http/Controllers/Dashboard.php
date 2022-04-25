@@ -23,6 +23,7 @@ class Dashboard extends Controller
                 $hr_user_id=SmartHRAPI::checkUserEmail(Auth::user()->email);
             }
             $data['smart_hr_url'] = SmartHRAPI::loginUrl($hr_user_id);
+          
             if(Auth::user()->id==1){
                 $ticket_user_id=1;
             }else{
@@ -41,6 +42,7 @@ class Dashboard extends Controller
             }else{
                 $erp_user_id=ErpAPI::checkUserEmail(Auth::user()->email);
             }
+          
             $data['erp_url']=ErpAPI::loginUrl($erp_user_id);
             $data['hr_user_id']=$hr_user_id;
             $data['ticket_user_id']=$ticket_user_id;

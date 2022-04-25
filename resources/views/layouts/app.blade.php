@@ -20,7 +20,7 @@
     <link href="{{asset('css/tailwind.css')}}" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('css/calendar/humanity.calendars.picker.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/style.css?2') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css?3') }}">
     @if(app()->getLocale()=='en')
     <link rel="stylesheet" href="{{ asset('css/ltr.css') }}">
     @endif

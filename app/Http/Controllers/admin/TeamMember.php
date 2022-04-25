@@ -40,6 +40,7 @@ class TeamMember extends Controller
     }
     public function getData()
     {
+
         $users = User::select(['id', 'name', 'email', 'hr_user_id', 'task_user_id','erp_user_id','ticket_user_id','role_id'])->where("id",">",1);
 
         return Datatables::of($users)
@@ -49,13 +50,14 @@ class TeamMember extends Controller
                 $edit_lang = __('Edit');
                 $delete_lang = __('Delete');
                 $btn = '';
-                $btn = $btn . '<a  href="' . $edit_url . '" title="' . $edit_lang . '" class="edit mt-1 btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>';
+               $btn = $btn . '<a  href="' . $edit_url . '" title="' . $edit_lang . '" class="edit mt-1 btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>';
                 $btn = $btn . ' <a link="' . $delete_url . '" title="' . $delete_lang . '" class="edit mt-1 btn btn-danger delete-btn btn-sm"><i class="fa fa-trash"></i></a>';
+
 
                 return $btn;
             })
             ->addColumn('hr', function ($row) {
-                $linked='<i class="fa fa-check-circle text-success"></i> ';
+           $linked='<i class="fa fa-check-circle text-success"></i> ';
                 $unlinked='<i class="fa fa-times-circle text-danger"></i> ';
              if($row->hr_user_id>0)
                 return $linked;
@@ -70,6 +72,7 @@ class TeamMember extends Controller
                    return $linked;
                    else
                    return $unlinked;
+   
                })
                ->addColumn('erp', function ($row) {
                 $linked='<i class="fa fa-check-circle text-success"></i> ';
@@ -90,7 +93,7 @@ class TeamMember extends Controller
                    return $unlinked;
    
                })
-               ->addColumn('role', function ($row) {
+                ->addColumn('role', function ($row) {
                 $admin=__('Admin');
                 $user=__('Normal User');
                 $admin='<i class="fa fa-check-circle text-success"></i> ';
@@ -160,7 +163,7 @@ class TeamMember extends Controller
         $user = User::findOrFail($id);
         $get['id'] = intval($user->hr_user_id);
         $data['user'] = $user;
-      /*  $data['hr_users'] = $this->smarthr->getEmployee($get);
+        $data['hr_users'] = $this->smarthr->getEmployee($get);
         $ticket_filter['id']=intval($user->ticket_user_id);
         $ticket = new  TicketsAPI();
         $data['ticket_users'] =$ticket->getUser($ticket_filter);
@@ -169,7 +172,7 @@ class TeamMember extends Controller
         $data['erp_users'] =  $erp->getUser($erp_filter);
         $task = new  TaskAPI();
         $task_filter['id']=intval($user->task_user_id);
-        $data['task_users'] = $task->getUser($task_filter);*/
+        $data['task_users'] = $task->getUser($task_filter);
         return  view('admin/team_member/edit', $data);
     }
 

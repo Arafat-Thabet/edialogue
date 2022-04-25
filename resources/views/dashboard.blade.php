@@ -46,7 +46,7 @@
                             <div class="block bg-light">
                                 <img src="{{asset('img/smart-erp.png')}}">
                                 <div class="link-div relative">
-                                @if(true or $erp_user_id<=0 OR $user->erp_user_id<=0)
+                                @if($erp_user_id<=0 OR $user->erp_user_id<=0)
                                 <a href="{{route('active-system',['sys_type'=>'erp'])}}" class="btn mt-1 btn-md access-request-btn  btn-success">{{__('Access request')}}</a>
                                 @endif
                                     <a target="__blank" href="{{$erp_url}}" class="btn dashboard-btn"> {{ __('Smart ERP')}}</a>

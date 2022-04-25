@@ -1904,3 +1904,27 @@ div.dataTables_wrapper div.dataTables_filter input {
 .badge-danger {
     background-color: red;
 }
+
+@media only screen and (max-width: 600px) {
+    .unlinked,
+    .access-request-btn {
+        position: relative;
+        right: 3px;
+        bottom: auto;
+        display: block;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}
+
+@media only screen and (max-width: 1400px) and (min-width: 768px) {
+    .unlinked,
+    .access-request-btn {
+        position: relative;
+        right: 3px;
+        bottom: auto;
+        display: block;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}

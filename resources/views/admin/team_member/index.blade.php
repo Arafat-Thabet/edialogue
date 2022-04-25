@@ -20,7 +20,8 @@
     <th> {{ __('Task Managment')}}</th>
     <th> {{ __('Smart ERP')}}</th>
     <th> {{ __('Smart Tickets')}}</th>
-    <th> {{ __('Admin')}}</th>
+        <th> {{ __('Admin')}}</th>
+
     <th>{{__('Action')}}</th>
 </thead>
 <tbody class="text-center">
@@ -65,7 +66,8 @@
         { mData: 'task' },
         { mData: 'erp' },
         { mData: 'ticket' },
-        { mData: 'role' },
+                { mData: 'role' },
+
         { mData: 'action' },
         
   

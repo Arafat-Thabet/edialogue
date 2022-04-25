@@ -35,8 +35,10 @@ class GoogleController extends Controller
             $finduser = User::where('email', $user->email)->first();
              $_email_str=explode('@',$user->email);
              $allowed_emails=array("edialoguec.com","edialogue.org","newmuslimacademy.org","islamvolunteers.org","mopacademy.org");
+           
              if(isset($_email_str[1]) && !in_array($_email_str[1],$allowed_emails)){
-                redirect(route('unallowed_email'));
+                 
+               return  redirect(route('unallowed_email'));
              }
             if($finduser){
        
@@ -50,7 +52,7 @@ class GoogleController extends Controller
                     'email' => $user->email,
                     'google_id'=> $user->id,
                     'password' => Hash::make('11111'),
-                    'hr_user_id' => 1,
+                      'hr_user_id' => 1,
                     'task_user_id' => 1,
                     "erp_user_id"=>1,
                     "ticket_user_id"=>1,

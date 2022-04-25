@@ -61,7 +61,8 @@ class TicketsAPI
         $get['email']=$email;
         $response = Http::withHeaders([
             'authorization' => self::$token
-        ])->get(erp_url('api/cdialog/user'), $get);
+        ])->get(tickets_base_url('api/cdialog/user'), $get);
+    
         return (isset($response->object()->user_id) ? $response->object()->user_id : 0);
     }
 }

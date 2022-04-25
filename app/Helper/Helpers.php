@@ -1,14 +1,14 @@
 <?php
 
-use App\Models\Notifications;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use App\Models\Notifications;
 
 if (!function_exists('hr_api_url')) {
 	function hr_api_url($url = '')
 	{
-		return  'http://localhost/smarthr/' . $url;
+		return  'https://system.smart-hr.top/' . $url;
 	}
 }
 /**
@@ -33,25 +33,28 @@ if (!function_exists('encrypt_url')) {
 if (!function_exists('tickets_base_url')) {
 	function tickets_base_url($url = '')
 	{
-		return "http://tickets.smart-hr.top/" . $url;
+	   
+		return "https://tickets.urhelp.vip/" . $url;
 	}
 }
 if (!function_exists('task_base_url')) {
 	function task_base_url($url = '')
 	{
-		return "http://localhost/taskroken/" . $url;
+		return "https://hr.task.edialoguec.sa/" . $url;
 	}
 }
 if (!function_exists('erp_url')) {
 	function erp_url($url = '')
 	{
-		return "http://test.smarterp.top/" . $url;
+	    
+	   
+		return "https://charities.smarterp.top/" . $url;
 	}
 }
 if (!function_exists('is_admin')) {
 	function is_admin()
 	{
-		if (auth()->user()->role_id == 1) {
+		if (Auth::user()->role_id == 1) {
 			return true;
 		} else {
 			return false;
@@ -90,8 +93,8 @@ if (!function_exists('message_box')) {
     
             }
             if (!empty($uri)) {
-				//return redirect(route($uri));
-				return  redirect($uri);
+			//	return redirect(route($uri));
+              return redirect($uri);
               
             }
             return false;
@@ -151,12 +154,13 @@ if (!function_exists('sys_lang')) {
 		return app()->getLocale();
 	}
 }
+
 if (!function_exists('noneReadedNotice')) {
 
 	function noneReadedNotice()
 	{
 		$user_id=auth()->user()->id;
-		$result =Notifications::whereRaw("FIND_IN_SET('$user_id',notify_to)!=0")->whereRaw("FIND_IN_SET('$user_id',read_by)=0")->get()->count();
+		$result =Notifications::whereRaw("FIND_IN_SET('$user_id',notify_to)!=0")->whereRaw("FIND_IN_SET('$user_id',read_by)=0")->join("users","notifications.user_id","=","users.id")->get()->count();
 	
 		if($result>0){
 			return '<span class="badge badge-pill badge-danger">'.$result.'</span>';

@@ -1,4 +1,9 @@
 <x-app-layout>
+    <style>
+        p {
+            text-align: start;
+        }
+    </style>
 <div class="container">
 <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
@@ -15,10 +20,10 @@
     <h6 class="mx-2 my-1">{{__('Email')}} : {{$user->email}}</h6>
     <h6 class="mx-2 my-1">{{__('Created at')}} : <bdi>{{$notice->created_at}}</bdi></h6>
     @if($notice->event=='active_hr' && $check_id<=0)
-    <p>
+    <p class="text-start">
         {{__('This user is not add in System')}}
         {{ __('Smart HR')}}
-        <?=modal_anchor(route('add-hr-employee'),__('Add').' <i class="fa fa-plus"></i>',array('class'=>'btn btn-sm btn-primary add-user-btn' ,"title"=>__('Add'),'data-modal-xl'=>"1"))?>
+        <?=modal_anchor(route('add-hr-employee'),__('Add').' <i class="fa fa-plus"></i>',array('class'=>'btn btn-sm btn-primary ' ,"title"=>__('Add'),'data-modal-xl'=>"1"))?>
 
     </p>
     @endif
@@ -31,7 +36,7 @@
     <p>
         {{__('This user is not add in System')}}
         {{ __('Smart Tickets')}}
-        <?=modal_anchor(route('add-ticket-user'),__('Add').' <i class="fa fa-plus"></i>',array('class'=>'btn btn-sm btn-primary add-user-btn',"title"=>__('Add'),'data-modal-xl'=>"1"))?>
+        <?=modal_anchor(route('add-ticket-user'),__('Add').' <i class="fa fa-plus"></i>',array('class'=>'btn btn-sm btn-primary ',"title"=>__('Add'),'data-modal-xl'=>"1"))?>
     </p>
     @endif
     @if($notice->event=='active_ticket' && $user->ticket_user_id<=0)
@@ -44,7 +49,7 @@
     <p>
         {{__('This user is not add in System')}}
         {{ __('Smart ERP')}}
-        <?=modal_anchor(route('add-erp-user'),__('Add').' '.' <i class="fa fa-plus"></i>',array('class'=>'btn btn-sm  btn-primary add-user-btn',"title"=>__('Add'),'data-modal-xl'=>"1"))?>
+        <?=modal_anchor(route('add-erp-user'),__('Add').' '.' <i class="fa fa-plus"></i>',array('class'=>'btn btn-sm  btn-primary ',"title"=>__('Add'),'data-modal-xl'=>"1"))?>
     </p>
     @endif
     @if($notice->event=='active_erp' && $user->erp_user_id<=0)
@@ -57,7 +62,7 @@
     <p>
         {{__('This user is not add in System')}}
         {{ __('Task Managment')}}
-        <?=modal_anchor(route('add-task-user'),__('Add').' '.' <i class="fa fa-plus"></i>',array('class'=>'btn btn-sm btn-primary add-user-btn',"title"=>__('Add'),'data-modal-xl'=>"1"))?>
+        <?=modal_anchor(route('add-task-user'),__('Add').' '.' <i class="fa fa-plus"></i>',array('class'=>'btn btn-sm btn-primary ',"title"=>__('Add'),'data-modal-xl'=>"1"))?>
     </p>
     @endif
     @if($notice->event=='active_task' && $user->task_user_id<=0)
